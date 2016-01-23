@@ -5,7 +5,7 @@
  * Description: Allows only specific products to generate commission
  * Author: Pippin Williamson and Andrew Munro
  * Author URI: http://affiliatewp.com
- * Version: 1.0
+ * Version: 1.0.1
  *
  * AffiliateWP is distributed under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 2 of the License, or
@@ -26,7 +26,7 @@
  * @since 1.0
  */
 function affwp_allowed_products_calc_referral_amount( $referral_amount, $affiliate_id, $amount, $reference, $product_id ) {
-	
+
 	if ( $product_id != in_array( $product_id, affwp_allowed_products_get_products() ) ) {
 		return 0.00;
 	}
@@ -78,3 +78,37 @@ function affwp_allowed_products_sanitize_settings( $input ) {
 	return $input;
 }
 add_filter( 'affwp_settings_integrations_sanitize', 'affwp_allowed_products_sanitize_settings' );
+
+/**
+ * Prevent the referral notification email from being sent to the affiliate if the product is blocked from receiving commission
+ *
+ * @since 1.0.1
+ */
+function affwp_allowed_products_notify_on_new_referral( $return, $referral ) {
+
+	$products = $referral->products;
+
+	// get an array of the product IDs being purchased
+	$product_ids = wp_list_pluck( $products, 'id' );
+
+	if ( $product_ids ) {
+
+		foreach ( $product_ids as $id ) {
+
+			// check to see if one of the product IDs exists in the allowed products array.
+			// If found, send the email
+			if ( in_array( $id, affwp_allowed_products_get_products() ) ) {
+				$return = true;
+				break;
+			} else {
+				// don't send the email
+				$return = false;
+			}
+
+		}
+
+	}
+
+	return $return;
+}
+add_filter( 'affwp_notify_on_new_referral', 'affwp_allowed_products_notify_on_new_referral', 10, 2 );

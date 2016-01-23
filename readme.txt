@@ -2,8 +2,8 @@
 Contributors: sumobi, mordauk
 Tags: AffiliateWP, affiliate, Pippin Williamson, Andrew Munro, mordauk, pippinsplugins, sumobi, ecommerce, e-commerce, e commerce, selling, referrals, easy digital downloads, digital downloads, woocommerce, woo, products, product, allowed, affiliate marketing
 Requires at least: 3.9
-Tested up to: 4.1.1
-Stable tag: 1.0
+Tested up to: 4.4.1
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,6 +35,9 @@ Go to Affiliates &rarr; Settings &rarr; Integrations and enter the IDs of the pr
 1. The input field to enter the product IDs that should receive commission.
 
 == Changelog ==
+
+= 1.0.1 =
+* Fix: prevent affiliate referral notifications from being sent if the product is not allowed to earn a commission
 
 = 1.0 =
 * Initial release
