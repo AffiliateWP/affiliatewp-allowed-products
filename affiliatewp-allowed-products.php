@@ -5,7 +5,7 @@
  * Description: Allows only specific products to generate commission
  * Author: Pippin Williamson and Andrew Munro
  * Author URI: http://affiliatewp.com
- * Version: 1.0.1
+ * Version: 1.0.2
  *
  * AffiliateWP is distributed under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 2 of the License, or
@@ -112,3 +112,18 @@ function affwp_allowed_products_notify_on_new_referral( $return, $referral ) {
 	return $return;
 }
 add_filter( 'affwp_notify_on_new_referral', 'affwp_allowed_products_notify_on_new_referral', 10, 2 );
+
+/**
+ * Show a dismissable notice when no product IDs have been entered
+ *
+ * @since 1.0.2
+ */
+function affwp_allowed_products_admin_notice() {
+    if ( empty ( affwp_allowed_products_get_products() ) && ! get_user_meta( get_current_user_id(), '_affwp_no_allowed_products_dismissed', true )  ) { ?>
+        <div class="error notice">
+            <p><?php echo sprintf( __( 'All products are blocked from generating commission, as no product IDs have been entered for the <a href="%s" target="_blank">Allowed Products</a> add-on. <a href="%s">Enter product IDs</a> to generate commission for specific products. ', 'affiliatewp-allowed-products' ), 'https://affiliatewp.com/addons/allowed-products/', admin_url( 'admin.php?page=affiliate-wp-settings&tab=integrations' ) ) ?></p>
+			<p><a href="<?php echo wp_nonce_url( add_query_arg( array( 'affwp_action' => 'dismiss_notices', 'affwp_notice' => 'no_allowed_products' ) ), 'affwp_dismiss_notice', 'affwp_dismiss_notice_nonce' ); ?>"><?php _e( 'Dismiss Notice', 'affiliate-wp' ); ?></a></p>
+        </div>
+    <?php }
+}
+add_action( 'admin_notices', 'affwp_allowed_products_admin_notice' );
