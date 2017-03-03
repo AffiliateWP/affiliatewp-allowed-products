@@ -1,14 +1,16 @@
 <?php
 /**
- * Functions
+ * Functions for Allowed Products.
  *
- * @since 1.0.3
+ * @since 1.1
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
- * Filter the referral amounts
+ * Filters the referral amounts.
  *
  * @since 1.0
  */
@@ -23,7 +25,7 @@ function affwp_allowed_products_calc_referral_amount( $referral_amount, $affilia
 add_filter( 'affwp_calc_referral_amount', 'affwp_allowed_products_calc_referral_amount', 10, 5 );
 
 /**
- * Get allowed products
+ * Retrieves the list of allowed products.
  *
  * @since 1.0
  */
@@ -37,7 +39,7 @@ function affwp_allowed_products_get_products() {
 }
 
 /**
- * Allow product IDs to be entered from Affiliate -> Settings -> Integrations
+ * Allows product IDs to be entered from Affiliate -> Settings -> Integrations
  *
  * @since 1.0
  */
@@ -54,7 +56,7 @@ function affwp_allowed_products_settings( $fields ) {
 add_filter( 'affwp_settings_integrations', 'affwp_allowed_products_settings' );
 
 /**
- * Sanitize settings field
+ * Sanitizes the settings field.
  *
  * @since 1.0
  */
@@ -67,7 +69,8 @@ function affwp_allowed_products_sanitize_settings( $input ) {
 add_filter( 'affwp_settings_integrations_sanitize', 'affwp_allowed_products_sanitize_settings' );
 
 /**
- * Prevent the referral notification email from being sent to the affiliate if the product is blocked from receiving commission
+ * Prevents the referral notification email from being sent to the affiliate
+ * if the product is blocked from receiving commission
  *
  * @since 1.0.1
  */
@@ -101,7 +104,7 @@ function affwp_allowed_products_notify_on_new_referral( $return, $referral ) {
 add_filter( 'affwp_notify_on_new_referral', 'affwp_allowed_products_notify_on_new_referral', 10, 2 );
 
 /**
- * Show a dismissable notice when no product IDs have been entered
+ * Shows a dismissible notice when no product IDs have been entered
  *
  * @since 1.0.2
  */
