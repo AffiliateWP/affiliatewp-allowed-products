@@ -3,7 +3,7 @@
  * Plugin Name: AffiliateWP - Allowed Products
  * Plugin URI: http://affiliatewp.com/
  * Description: Allows only specific products to generate commission
- * Author: Pippin Williamson and Andrew Munro
+ * Author: AffiliateWP, LLC
  * Author URI: http://affiliatewp.com
  * Version: 1.0.2
  *
@@ -21,10 +21,17 @@
  */
 
  // Exit if accessed directly
- if( ! defined( 'ABSPATH' ) ) exit;
+ if( ! defined( 'ABSPATH' ) ) {
+ 	exit;
+ }
 
  if ( ! class_exists( 'AffiliateWP_Allowed_Products' ) ) {
 
+	 /**
+	  * AffiliateWP - Allowed Products add-on.
+	  *
+	  * @since 1.0
+	  */
 	final class AffiliateWP_Allowed_Products {
 
 		/**
@@ -35,29 +42,33 @@
 		 *
 		 * TL;DR This is a static property property that holds the singleton instance.
 		 *
-		 * @var object
+		 * @access private
+		 * @since  1.1
+		 * @var    \AffiliateWP_Allowed_Products
 		 * @static
-		 * @since 1.0.3
 		 */
 		private static $instance;
 
 		/**
-		 * The version number of Allowed Products
+		 * The version number of Allowed Products.
 		 *
-		 * @since 1.0.3
+		 * @access private
+		 * @since  1.1
+		 * @var    string
 		 */
 		private $version = '1.0.3';
 
 		/**
-		 * Main AffiliateWP_Allowed_Products Instance
+		 * Main AffiliateWP_Allowed_Products Instance.
 		 *
 		 * Insures that only one instance of AffiliateWP_Allowed_Products exists in memory at any one
 		 * time. Also prevents needing to define globals all over the place.
 		 *
-		 * @since 1.0.3
+		 * @access public
+		 * @since  1.1
 		 * @static
-		 * @static var array $instance
-		 * @return The one true AffiliateWP_Allowed_Products
+		 *
+		 * @return \AffiliateWP_Allowed_Products The one true AffiliateWP_Allowed_Products instance.
 		 */
 		public static function instance() {
 			if ( ! isset( self::$instance ) && ! ( self::$instance instanceof AffiliateWP_Allowed_Products ) ) {
@@ -73,14 +84,13 @@
 		}
 
 		/**
-		 * Throw error on object clone
+		 * Throws error on object clone.
 		 *
 		 * The whole idea of the singleton design pattern is that there is a single
 		 * object therefore, we don't want the object to be cloned.
 		 *
-		 * @since 1.0.3
-		 * @access protected
-		 * @return void
+		 * @access public
+		 * @since  1.1
 		 */
 		public function __clone() {
 			// Cloning instances of the class is forbidden
@@ -88,10 +98,11 @@
 		}
 
 		/**
-		 * Disable unserializing of the class
+		 * Disables unserializing of the class.
 		 *
-		 * @since 1.0.3
-		 * @access protected
+		 * @access public
+		 * @since  1.1
+		 *
 		 * @return void
 		 */
 		public function __wakeup() {
@@ -100,20 +111,20 @@
 		}
 
 		/**
-		 * Constructor Function
+		 * Runs during class start-up.
 		 *
-		 * @since 1.0.3
 		 * @access private
+		 * @since  1.1
 		 */
 		private function __construct() {
 			self::$instance = $this;
 		}
 
 		/**
-		 * Reset the instance of the class
+		 * Resets the instance of the class.
 		 *
-		 * @since 1.0.3
 		 * @access public
+		 * @since 1.1
 		 * @static
 		 */
 		public static function reset() {
@@ -121,11 +132,10 @@
 		}
 
 		/**
-		 * Setup plugin constants
+		 * Sets up plugin constants.
 		 *
 		 * @access private
-		 * @since 1.0.3
-		 * @return void
+		 * @since  1.1
 		 */
 		private function setup_constants() {
 
@@ -152,11 +162,10 @@
 		}
 
 		/**
-		 * Loads the plugin language files
+		 * Loads the plugin language files.
 		 *
 		 * @access public
-		 * @since 1.0.3
-		 * @return void
+		 * @since  1.1
 		 */
 		public function load_textdomain() {
 
@@ -185,11 +194,10 @@
 		}
 
         /**
-		 * Include necessary files
+		 * Includes necessary files.
 		 *
-		 * @access      private
-		 * @since       1.0
-		 * @return      void
+         * @access private
+         * @since  1.1
 		 */
 		private function includes() {
 
@@ -205,10 +213,11 @@
 	 * Use this function like you would a global variable, except without needing
 	 * to declare the global.
 	 *
-	 * Example: <?php $affwp_ap = AffiliateWP_Allowed_Products(); ?>
+	 * Example: <?php $affwp_ap = affiliatewp_allowed_products(); ?>
 	 *
-	 * @since 1.0.3
-	 * @return object The one true AffiliateWP_Allowed_Products Instance
+	 * @since 1.1
+	 *
+	 * @return \AffiliateWP_Allowed_Products The one true AffiliateWP_Allowed_Products Instance.
 	 */
 	function affiliatewp_allowed_products() {
 	    if ( ! class_exists( 'Affiliate_WP' ) ) {
