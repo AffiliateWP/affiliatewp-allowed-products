@@ -120,3 +120,17 @@ function affwp_allowed_products_admin_notice() {
     <?php }
 }
 add_action( 'admin_notices', 'affwp_allowed_products_admin_notice' );
+
+/**
+ * Handles marking the allowed products notice as dismissed.
+ *
+ * @since 1.1
+ *
+ * @param string $notice Notice ID.
+ */
+function affwp_allowed_products_mark_notice_dismissed( $notice ) {
+	if ( 'no_allowed_products' === $notice ) {
+		update_user_meta( get_current_user_id(), '_affwp_no_allowed_products_dismissed', 1 );
+	}
+}
+add_action( 'affwp_dismiss_notices_default', 'affwp_allowed_products_mark_notice_dismissed' );
