@@ -226,14 +226,16 @@
 	            require_once 'includes/class-activation.php';
 	        }
 
-		// AffiliateWP activation
+			// AffiliateWP activation
             if ( ! class_exists( 'Affiliate_WP' ) ) {
     			$activation = new AffiliateWP_Activation( plugin_dir_path( __FILE__ ), basename( __FILE__ ) );
     			$activation = $activation->run();
     		}
 
 	    } else {
+
 	        return AffiliateWP_Allowed_Products::instance();
+
 	    }
 	}
 	add_action( 'plugins_loaded', 'affiliatewp_allowed_products', 100 );
