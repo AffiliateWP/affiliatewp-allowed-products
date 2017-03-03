@@ -56,7 +56,7 @@
 		 * @since  1.1
 		 * @var    string
 		 */
-		private $version = '1.0.3';
+		private $version = '1.0.2';
 
 		/**
 		 * Main AffiliateWP_Allowed_Products Instance.
