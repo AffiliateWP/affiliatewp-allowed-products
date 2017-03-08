@@ -1,5 +1,5 @@
 === AffiliateWP - Allowed Products ===
-Contributors: sumobi, mordauk
+Contributors: sumobi, mordauk, drewapicture
 Tags: AffiliateWP, affiliate, Pippin Williamson, Andrew Munro, mordauk, pippinsplugins, sumobi, ecommerce, e-commerce, e commerce, selling, referrals, easy digital downloads, digital downloads, woocommerce, woo, products, product, allowed, affiliate marketing
 Requires at least: 3.9
 Tested up to: 4.4.2
