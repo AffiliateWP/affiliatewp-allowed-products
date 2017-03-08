@@ -36,6 +36,11 @@ Go to Affiliates &rarr; Settings &rarr; Integrations and enter the IDs of the pr
 
 == Changelog ==
 
+= 1.1 =
+* Fix: Admin notice is not dismissible in some circumstances
+* Fix: All commission rates set to 0 when used with non-supported integrations
+* Tweak: Encapsulate the plugin loader and activation into a class to avoid errors
+
 = 1.0.2 =
 * New: Dismissable admin notice shown in admin when no product IDs have been entered
 
