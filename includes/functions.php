@@ -128,7 +128,7 @@ function affwp_allowed_products_admin_notice() {
 
     if ( ! affwp_allowed_products_get_products() && ! $has_dismissed ) { ?>
         <div class="error notice">
-            <p><?php echo sprintf( __( 'All supported products are blocked from generating commission, as no product IDs have been entered for the <a href="%s" target="_blank">Allowed Products</a> add-on. <a href="%s">Enter product IDs</a> to generate commission for specific products. ', 'affiliatewp-allowed-products' ), 'https://affiliatewp.com/addons/allowed-products/', admin_url( 'admin.php?page=affiliate-wp-settings&tab=integrations' ) ) ?></p>
+            <p><?php echo sprintf( __( 'There are currently no products configured to generate commissions. Visit the <a href="%s">Integrations</a> screen to enter some product IDs under the Allowed Products section.', 'affiliatewp-allowed-products' ), esc_url( admin_url( 'admin.php?page=affiliate-wp-settings&tab=integrations' ) ) ); ?></p>
 			<p><a href="<?php echo wp_nonce_url( add_query_arg( array( 'affwp_action' => 'dismiss_notices', 'affwp_notice' => 'no_allowed_products' ) ), 'affwp_dismiss_notice', 'affwp_dismiss_notice_nonce' ); ?>"><?php _e( 'Dismiss Notice', 'affiliate-wp' ); ?></a></p>
         </div>
     <?php }
