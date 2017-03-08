@@ -10,19 +10,33 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Filters the referral amounts.
+ * Filters the product rates for supported products.
  *
- * @since 1.0
+ * If the product ID is not in the allowed list and the current integration is supported,
+ * the rate will be set to 0.
+ *
+ * @since 1.1
+ *
+ * @param float  $rate         Product-level referral rate.
+ * @param int    $product_id   Product ID.
+ * @param array  $args         Arguments for retrieving the product rate.
+ * @param int    $affiliate_id Affilaite ID.
+ * @param string $context      Order context.
+ *
+ * @return int
  */
-function affwp_allowed_products_calc_referral_amount( $referral_amount, $affiliate_id, $amount, $reference, $product_id ) {
+function affwp_allowed_products_get_product_rate( $rate, $product_id, $args, $affiliate_id, $context ) {
 
-	if ( $product_id != in_array( $product_id, affwp_allowed_products_get_products() ) ) {
-		return 0.00;
+	if ( $product_id !== in_array( $product_id, affwp_allowed_products_get_products() )
+		&& in_array( $context, affwp_allowed_products_supported_integrations(), true )
+	) {
+		$rate = 0;
 	}
 
-    return $referral_amount;
+	return $rate;
+
 }
-add_filter( 'affwp_calc_referral_amount', 'affwp_allowed_products_calc_referral_amount', 10, 5 );
+add_filter( 'affwp_get_product_rate', 'affwp_allowed_products_get_product_rate', 100, 5 );
 
 /**
  * Retrieves the list of allowed products.
@@ -47,7 +61,7 @@ function affwp_allowed_products_settings( $fields ) {
 
 	$fields['allowed_products'] = array(
 		'name' => __( 'Allowed Products', 'affiliatewp-allowed-products' ),
-		'desc' => '<p class="description">' . __( 'Enter any product IDs (separated by commas) that should be allowed to generate commission.', 'affiliatewp-allowed-products' ) . '</p>',
+		'desc' => '<p class="description">' . __( 'Enter any product IDs (separated by commas) that should be allowed to generate commissions.', 'affiliatewp-allowed-products' ) . '</p>',
 		'type' => 'text'
 	);
 
@@ -114,7 +128,7 @@ function affwp_allowed_products_admin_notice() {
 
     if ( ! affwp_allowed_products_get_products() && ! $has_dismissed ) { ?>
         <div class="error notice">
-            <p><?php echo sprintf( __( 'All products are blocked from generating commission, as no product IDs have been entered for the <a href="%s" target="_blank">Allowed Products</a> add-on. <a href="%s">Enter product IDs</a> to generate commission for specific products. ', 'affiliatewp-allowed-products' ), 'https://affiliatewp.com/addons/allowed-products/', admin_url( 'admin.php?page=affiliate-wp-settings&tab=integrations' ) ) ?></p>
+            <p><?php echo sprintf( __( 'There are currently no products configured to generate commissions. Visit the <a href="%s">Integrations</a> screen to enter some product IDs under the Allowed Products section.', 'affiliatewp-allowed-products' ), esc_url( admin_url( 'admin.php?page=affiliate-wp-settings&tab=integrations' ) ) ); ?></p>
 			<p><a href="<?php echo wp_nonce_url( add_query_arg( array( 'affwp_action' => 'dismiss_notices', 'affwp_notice' => 'no_allowed_products' ) ), 'affwp_dismiss_notice', 'affwp_dismiss_notice_nonce' ); ?>"><?php _e( 'Dismiss Notice', 'affiliate-wp' ); ?></a></p>
         </div>
     <?php }
@@ -134,3 +148,14 @@ function affwp_allowed_products_mark_notice_dismissed( $notice ) {
 	}
 }
 add_action( 'affwp_dismiss_notices_default', 'affwp_allowed_products_mark_notice_dismissed' );
+
+/**
+ * Retrieves a list of integrations that support Allowed Products.
+ *
+ * @since 1.1
+ *
+ * @return array List of supported integrations.
+ */
+function affwp_allowed_products_supported_integrations() {
+	return array( 'edd', 'woocommerce', 'memberpress' );
+}
