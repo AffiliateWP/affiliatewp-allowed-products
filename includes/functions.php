@@ -61,7 +61,7 @@ function affwp_allowed_products_settings( $fields ) {
 
 	$fields['allowed_products'] = array(
 		'name' => __( 'Allowed Products', 'affiliatewp-allowed-products' ),
-		'desc' => '<p class="description">' . __( 'Enter any product IDs (separated by commas) that should be allowed to generate commission.', 'affiliatewp-allowed-products' ) . '</p>',
+		'desc' => '<p class="description">' . __( 'Enter any product IDs (separated by commas) that should be allowed to generate commissions.', 'affiliatewp-allowed-products' ) . '</p>',
 		'type' => 'text'
 	);
 
