@@ -27,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function affwp_allowed_products_get_product_rate( $rate, $product_id, $args, $affiliate_id, $context ) {
 
-	if ( $product_id !== in_array( $product_id, affwp_allowed_products_get_products() )
+	if ( ! in_array( $product_id, affwp_allowed_products_get_products() )
 		&& in_array( $context, affwp_allowed_products_supported_integrations(), true )
 	) {
 		$rate = 0;
