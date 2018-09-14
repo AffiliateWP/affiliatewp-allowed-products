@@ -9,34 +9,73 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/**
- * Filters the product rates for supported products.
- *
- * If the product ID is not in the allowed list and the current integration is supported,
- * the rate will be set to 0.
- *
- * @since 1.1
- *
- * @param float  $rate         Product-level referral rate.
- * @param int    $product_id   Product ID.
- * @param array  $args         Arguments for retrieving the product rate.
- * @param int    $affiliate_id Affilaite ID.
- * @param string $context      Order context.
- *
- * @return int
- */
-function affwp_allowed_products_get_product_rate( $rate, $product_id, $args, $affiliate_id, $context ) {
+if ( true === version_compare( AFFILIATEWP_VERSION, '2.2.9', '>=' ) ) {
 
-	if ( ! in_array( $product_id, affwp_allowed_products_get_products() )
-		&& in_array( $context, affwp_allowed_products_supported_integrations(), true )
-	) {
-		$rate = 0;
+	/**
+	 * Filters the referral amount for supported products.
+	 *
+	 * If the product ID is not in the allowed list and the current integration is supported,
+	 * the referral amount will be set to 0.
+	 *
+	 * @since 1.12
+	 *
+	 * @param  string  $referral_amount Referral amount.
+	 * @param  int     $affiliate_id    Affiliate ID.
+	 * @param  string  $amount          Order amount.
+	 * @param  string  $reference       Order Reference.
+	 * @param  int     $product_id      Product ID.
+	 * @param  string  $context         Order Context.
+	 *
+	 * @return float
+	 */
+	function affwp_allowed_products_calculate_referral_amount( $referral_amount, $affiliate_id, $amount, $reference, $product_id, $context ) {
+
+		if ( empty( $product_id ) ) {
+			return $referral_amount;
+		}
+
+		if ( ! in_array( $product_id, affwp_allowed_products_get_products() )
+		     && in_array( $context, affwp_allowed_products_supported_integrations(), true )
+		) {
+			$referral_amount = 0;
+		}
+
+		return $referral_amount;
+
 	}
+	add_filter( 'affwp_calc_referral_amount', 'affwp_allowed_products_calculate_referral_amount', 100, 6 );
 
-	return $rate;
+} else {
 
+	/**
+	 * Filters the product rates for supported products.
+	 *
+	 * If the product ID is not in the allowed list and the current integration is supported,
+	 * the rate will be set to 0.
+	 *
+	 * @since 1.1
+	 *
+	 * @param float  $rate         Product-level referral rate.
+	 * @param int    $product_id   Product ID.
+	 * @param array  $args         Arguments for retrieving the product rate.
+	 * @param int    $affiliate_id Affiliate ID.
+	 * @param string $context      Order context.
+	 *
+	 * @return int
+	 */
+	function affwp_allowed_products_get_product_rate( $rate, $product_id, $args, $affiliate_id, $context ) {
+
+		if ( ! in_array( $product_id, affwp_allowed_products_get_products() )
+		     && in_array( $context, affwp_allowed_products_supported_integrations(), true )
+		) {
+			$rate = 0;
+		}
+
+		return $rate;
+
+	}
+	add_filter( 'affwp_get_product_rate', 'affwp_allowed_products_get_product_rate', 100, 5 );
 }
-add_filter( 'affwp_get_product_rate', 'affwp_allowed_products_get_product_rate', 100, 5 );
 
 /**
  * Retrieves the list of allowed products.
