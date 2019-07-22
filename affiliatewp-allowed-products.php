@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: AffiliateWP - Allowed Products
- * Plugin URI: http://affiliatewp.com/
+ * Plugin URI: https://affiliatewp.com/add-ons/official-free/allowed-products/
  * Description: Allows only specific products to generate commission
  * Author: Sandhills Development, LLC
  * Author URI: https://sandhillsdev.com
