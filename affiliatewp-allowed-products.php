@@ -3,8 +3,8 @@
  * Plugin Name: AffiliateWP - Allowed Products
  * Plugin URI: http://affiliatewp.com/
  * Description: Allows only specific products to generate commission
- * Author: AffiliateWP, LLC
- * Author URI: http://affiliatewp.com
+ * Author: Sandhills Development, LLC
+ * Author URI: https://sandhillsdev.com
  * Version: 1.1.2
  *
  * AffiliateWP is distributed under the terms of the GNU General Public License as published by
