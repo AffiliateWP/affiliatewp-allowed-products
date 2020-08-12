@@ -126,6 +126,7 @@ add_filter( 'affwp_settings_integrations_sanitize', 'affwp_allowed_products_sani
  * if the product is blocked from receiving commission
  *
  * @since 1.0.1
+ * @since 1.1.3 The dismiss notice link was removed.
  */
 function affwp_allowed_products_notify_on_new_referral( $return, $referral ) {
 
