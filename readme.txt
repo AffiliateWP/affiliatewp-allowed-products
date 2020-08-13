@@ -4,7 +4,7 @@ Tags: AffiliateWP, affiliate, Pippin Williamson, Andrew Munro, mordauk, pippinsp
 Requires at least: 4.4
 Tested up to: 5.3
 Requires PHP: 5.3
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -36,6 +36,11 @@ Go to Affiliates &rarr; Settings &rarr; Integrations and enter the IDs of the pr
 1. The input field to enter the product IDs that should receive commission.
 
 == Changelog ==
+
+= 1.1.3 =
+
+* Improved: Removes notice dismiss functionality from no product warning.
+* Improved: Tested for WordPress version 5.5
 
 = 1.1.2 =
 
