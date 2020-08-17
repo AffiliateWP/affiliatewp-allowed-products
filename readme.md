@@ -1,4 +1,4 @@
-# AffilaiteWP Allowed Products
+# AffiliateWP Allowed Products
 
 This plugin requires [AffiliateWP](http://affiliatewp.com/ "AffiliateWP") in order to function.
 
