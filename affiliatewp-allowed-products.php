@@ -5,7 +5,7 @@
  * Description: Allows only specific products to generate commission
  * Author: Sandhills Development, LLC
  * Author URI: https://sandhillsdev.com
- * Version: 1.1.2
+ * Version: 1.1.3
  *
  * AffiliateWP is distributed under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 2 of the License, or
@@ -56,7 +56,7 @@
 		 * @since  1.1
 		 * @var    string
 		 */
-		private $version = '1.1.2';
+		private $version = '1.1.3';
 
 		/**
 		 * Main AffiliateWP_Allowed_Products Instance.
