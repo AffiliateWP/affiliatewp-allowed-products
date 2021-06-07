@@ -202,7 +202,7 @@
 			require_once AFFWP_AP_PLUGIN_DIR . 'includes/functions.php';
 
 		}
-    }
+	}
 
 	/**
 	 * The main function responsible for returning the one true AffiliateWP_Allowed_Products
@@ -218,24 +218,7 @@
 	 * @return \AffiliateWP_Allowed_Products The one true AffiliateWP_Allowed_Products Instance.
 	 */
 	function affiliatewp_allowed_products() {
-	    if ( ! class_exists( 'Affiliate_WP' ) ) {
-
-	        if ( ! class_exists( 'AffiliateWP_Activation' ) ) {
-	            require_once 'includes/class-activation.php';
-	        }
-
-			// AffiliateWP activation
-            if ( ! class_exists( 'Affiliate_WP' ) ) {
-    			$activation = new AffiliateWP_Activation( plugin_dir_path( __FILE__ ), basename( __FILE__ ) );
-    			$activation = $activation->run();
-    		}
-
-	    } else {
-
-	        return AffiliateWP_Allowed_Products::instance();
-
-	    }
+		return AffiliateWP_Allowed_Products::instance();
 	}
-	add_action( 'plugins_loaded', 'affiliatewp_allowed_products', 100 );
 
 }
