@@ -9,12 +9,10 @@
  * @since       1.2
  */
 
- // Exit if accessed directly
- if( ! defined( 'ABSPATH' ) ) {
- 	exit;
- }
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) exit;
 
- if ( ! class_exists( 'AffiliateWP_Allowed_Products' ) ) {
+if ( ! class_exists( 'AffiliateWP_Allowed_Products' ) ) {
 
 	/**
 	 * Main plugin bootstrap.
@@ -65,6 +63,7 @@
 		 * @since  1.1
 		 * @static
 		 *
+		 * @param string $file Main plugin file.
 		 * @return \AffiliateWP_Allowed_Products The one true AffiliateWP_Allowed_Products instance.
 		 */
 		public static function instance( $file = null ) {
@@ -91,7 +90,7 @@
 		 * @since  1.1
 		 */
 		public function __clone() {
-			// Cloning instances of the class is forbidden
+			// Cloning instances of the class is forbidden.
 			_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'affiliatewp-allowed-products' ), '1.0' );
 		}
 
@@ -104,7 +103,7 @@
 		 * @return void
 		 */
 		public function __wakeup() {
-			// Unserializing instances of the class is forbidden
+			// Unserializing instances of the class is forbidden.
 			_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'affiliatewp-allowed-products' ), '1.0' );
 		}
 
@@ -137,22 +136,22 @@
 		 */
 		private function setup_constants() {
 
-			// Plugin version
+			// Plugin version.
 			if ( ! defined( 'AFFWP_AP_VERSION' ) ) {
 				define( 'AFFWP_AP_VERSION', $this->version );
 			}
 
-			// Plugin Folder Path
+			// Plugin Folder Path.
 			if ( ! defined( 'AFFWP_AP_PLUGIN_DIR' ) ) {
 				define( 'AFFWP_AP_PLUGIN_DIR', plugin_dir_path( $this->file ) );
 			}
 
-			// Plugin Folder URL
+			// Plugin Folder URL.
 			if ( ! defined( 'AFFWP_AP_PLUGIN_URL' ) ) {
 				define( 'AFFWP_AP_PLUGIN_URL', plugin_dir_url( $this->file ) );
 			}
 
-			// Plugin Root File
+			// Plugin Root File.
 			if ( ! defined( 'AFFWP_AP_PLUGIN_FILE' ) ) {
 				define( 'AFFWP_AP_PLUGIN_FILE', $this->file );
 			}
@@ -167,35 +166,35 @@
 		 */
 		public function load_textdomain() {
 
-			// Set filter for plugin's languages directory
+			// Set filter for plugin's languages directory.
 			$lang_dir = dirname( plugin_basename( $this->file ) ) . '/languages/';
 			$lang_dir = apply_filters( 'affwp_ap_languages_directory', $lang_dir );
 
-			// Traditional WordPress plugin locale filter
-			$locale   = apply_filters( 'plugin_locale',  get_locale(), 'affiliatewp-allowed-products' );
+			// Traditional WordPress plugin locale filter.
+			$locale   = apply_filters( 'plugin_locale', get_locale(), 'affiliatewp-allowed-products' );
 			$mofile   = sprintf( '%1$s-%2$s.mo', 'affiliatewp-allowed-products', $locale );
 
-			// Setup paths to current locale file
+			// Setup paths to current locale file.
 			$mofile_local  = $lang_dir . $mofile;
 			$mofile_global = WP_LANG_DIR . '/affiliatewp-allowed-products/' . $mofile;
 
 			if ( file_exists( $mofile_global ) ) {
-				// Look in global /wp-content/languages/affiliatewp-allowed-products/ folder
+				// Look in global /wp-content/languages/affiliatewp-allowed-products/ folder.
 				load_textdomain( 'affiliatewp-allowed-products', $mofile_global );
 			} elseif ( file_exists( $mofile_local ) ) {
-				// Look in local /wp-content/plugins/affiliatewp-allowed-products/languages/ folder
+				// Look in local /wp-content/plugins/affiliatewp-allowed-products/languages/ folder.
 				load_textdomain( 'affiliatewp-allowed-products', $mofile_local );
 			} else {
-				// Load the default language files
+				// Load the default language files.
 				load_plugin_textdomain( 'affiliatewp-allowed-products', false, $lang_dir );
 			}
 		}
 
-        /**
+		/**
 		 * Includes necessary files.
 		 *
-         * @access private
-         * @since  1.1
+		 * @access private
+		 * @since  1.1
 		 */
 		private function includes() {
 
@@ -220,5 +219,4 @@
 	function affiliatewp_allowed_products() {
 		return AffiliateWP_Allowed_Products::instance();
 	}
-
 }
