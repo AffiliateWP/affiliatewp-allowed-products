@@ -137,23 +137,23 @@ if ( ! class_exists( 'AffiliateWP_Allowed_Products' ) ) {
 		private function setup_constants() {
 
 			// Plugin version.
-			if ( ! defined( 'AFFWP_AP_VERSION' ) ) {
-				define( 'AFFWP_AP_VERSION', $this->version );
+			if ( ! defined( 'AFFWP_ALLP_VERSION' ) ) {
+				define( 'AFFWP_ALLP_VERSION', $this->version );
 			}
 
 			// Plugin Folder Path.
-			if ( ! defined( 'AFFWP_AP_PLUGIN_DIR' ) ) {
-				define( 'AFFWP_AP_PLUGIN_DIR', plugin_dir_path( $this->file ) );
+			if ( ! defined( 'AFFWP_ALLP_PLUGIN_DIR' ) ) {
+				define( 'AFFWP_ALLP_PLUGIN_DIR', plugin_dir_path( $this->file ) );
 			}
 
 			// Plugin Folder URL.
-			if ( ! defined( 'AFFWP_AP_PLUGIN_URL' ) ) {
-				define( 'AFFWP_AP_PLUGIN_URL', plugin_dir_url( $this->file ) );
+			if ( ! defined( 'AFFWP_ALLP_PLUGIN_URL' ) ) {
+				define( 'AFFWP_ALLP_PLUGIN_URL', plugin_dir_url( $this->file ) );
 			}
 
 			// Plugin Root File.
-			if ( ! defined( 'AFFWP_AP_PLUGIN_FILE' ) ) {
-				define( 'AFFWP_AP_PLUGIN_FILE', $this->file );
+			if ( ! defined( 'AFFWP_ALLP_PLUGIN_FILE' ) ) {
+				define( 'AFFWP_ALLP_PLUGIN_FILE', $this->file );
 			}
 
 		}
@@ -168,7 +168,7 @@ if ( ! class_exists( 'AffiliateWP_Allowed_Products' ) ) {
 
 			// Set filter for plugin's languages directory.
 			$lang_dir = dirname( plugin_basename( $this->file ) ) . '/languages/';
-			$lang_dir = apply_filters( 'affwp_ap_languages_directory', $lang_dir );
+			$lang_dir = apply_filters( 'affwp_allp_languages_directory', $lang_dir );
 
 			// Traditional WordPress plugin locale filter.
 			$locale   = apply_filters( 'plugin_locale', get_locale(), 'affiliatewp-allowed-products' );
@@ -198,7 +198,7 @@ if ( ! class_exists( 'AffiliateWP_Allowed_Products' ) ) {
 		 */
 		private function includes() {
 
-			require_once AFFWP_AP_PLUGIN_DIR . 'includes/functions.php';
+			require_once AFFWP_ALLP_PLUGIN_DIR . 'includes/functions.php';
 
 		}
 	}
