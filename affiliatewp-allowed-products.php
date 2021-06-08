@@ -123,8 +123,8 @@ class AffiliateWP_AP_Requirements_Check extends AffiliateWP_Requirements_Check {
 		// Bootstrap to include all of the necessary files.
 		$this->bootstrap();
 
-		if ( defined( 'AFFWP_AP_VERSION' ) ) {
-			update_option( 'affwp_ap_version', AFFWP_AP_VERSION );
+		if ( defined( 'AFFWP_ALLP_VERSION' ) ) {
+			update_option( 'affwp_allp_version', AFFWP_ALLP_VERSION );
 		}
 	}
 
