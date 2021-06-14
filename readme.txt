@@ -1,10 +1,10 @@
 === AffiliateWP - Allowed Products ===
 Contributors: sumobi, mordauk, drewapicture, alexstandiford
 Tags: AffiliateWP, affiliate, Pippin Williamson, Andrew Munro, mordauk, pippinsplugins, sumobi, ecommerce, e-commerce, e commerce, selling, referrals, easy digital downloads, digital downloads, woocommerce, woo, products, product, allowed, affiliate marketing
-Requires at least: 4.4
+Requires at least: 5.0
 Tested up to: 5.5
-Requires PHP: 5.3
-Stable tag: 1.1.3
+Requires PHP: 5.6
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -36,6 +36,12 @@ Go to Affiliates &rarr; Settings &rarr; Integrations and enter the IDs of the pr
 1. The input field to enter the product IDs that should receive commission.
 
 == Changelog ==
+
+= 1.2 =
+* New: Enforce minimum dependency requirements checking
+* New: Requires PHP 5.6 minimum
+* New: Requires WordPress 5.0 minimum
+* New: Requires AffiliateWP 2.6 minimum
 
 = 1.1.3 =
 
