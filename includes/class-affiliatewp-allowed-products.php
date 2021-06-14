@@ -43,7 +43,7 @@ if ( ! class_exists( 'AffiliateWP_Allowed_Products' ) ) {
 		 * @since  1.1
 		 * @var    string
 		 */
-		private $version = '1.1.3';
+		private $version = '1.2';
 
 		/**
 		 * Main plugin file.
