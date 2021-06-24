@@ -48,7 +48,7 @@ if ( ! class_exists( 'AffiliateWP_Allowed_Products' ) ) {
 		/**
 		 * Main plugin file.
 		 *
-		 * @since 1.0.0
+		 * @since 1.2
 		 * @var   string
 		 */
 		private $file = '';
