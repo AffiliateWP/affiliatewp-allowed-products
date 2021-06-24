@@ -2,7 +2,7 @@
 Contributors: sumobi, mordauk, drewapicture, alexstandiford
 Tags: AffiliateWP, affiliate, Pippin Williamson, Andrew Munro, mordauk, pippinsplugins, sumobi, ecommerce, e-commerce, e commerce, selling, referrals, easy digital downloads, digital downloads, woocommerce, woo, products, product, allowed, affiliate marketing
 Requires at least: 5.0
-Tested up to: 5.5
+Tested up to: 5.7
 Requires PHP: 5.6
 Stable tag: 1.2
 License: GPLv2 or later
@@ -42,6 +42,7 @@ Go to Affiliates &rarr; Settings &rarr; Integrations and enter the IDs of the pr
 * New: Requires PHP 5.6 minimum
 * New: Requires WordPress 5.0 minimum
 * New: Requires AffiliateWP 2.6 minimum
+* Improved: Tested up to WordPress 5.7
 
 = 1.1.3 =
 
