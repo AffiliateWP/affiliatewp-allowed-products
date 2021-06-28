@@ -6,6 +6,12 @@ This plugin allows you to choose which products on your site should earn commiss
 
 ## Changelog
 
+### 1.2
+* New: Enforce minimum dependency requirements checking
+* New: Requires PHP 5.6 minimum
+* New: Requires WordPress 5.0 minimum
+* New: Requires AffiliateWP 2.6 minimum
+
 ### 1.1.3
 
 * Improved: Removes notice dismiss functionality from no product warning.
